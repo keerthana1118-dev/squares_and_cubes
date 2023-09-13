@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Squares and Cubes Calculator</title>
+</head>
+<body bgcolor ="aqua">
+    <h1>Squares and Cubes Calculator</h1>
+    <p>Enter the range to calculate squares and cubes:</p>
+    <input type="number" id="startRange" placeholder="Start Range">
+    <input type="number" id="endRange" placeholder="End Range">
+    <button onclick="calculateSquaresAndCubes()">Calculate</button>
+
+    <h2>Results</h2>
+    <table border="1">
+        <tr>
+            <th>Number</th>
+            <th>Square</th>
+            <th>Cube</th>
+        </tr>
+        <tbody id="resultTable"></tbody>
+    </table>
+
+    <script>
+        function calculateSquaresAndCubes() {
+            const startRange = parseInt(document.getElementById("startRange").value);
+            const endRange = parseInt(document.getElementById("endRange").value);
+            const resultTable = document.getElementById("resultTable");
+
+            if (isNaN(startRange) || isNaN(endRange)) {
+                alert("Please enter valid numbers for the range.");
+                return;
+            }
+
+            if (startRange > endRange) {
+                alert("Start range should be less than or equal to end range.");
+                return;
+            }
+
+            resultTable.innerHTML = ""; // Clear previous results
+
+            for (let i = startRange; i <= endRange; i++) {
+                const square = i * i;
+                const cube = i * i * i;
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${i}</td><td>${square}</td><td>${cube}</td>`;
+                resultTable.appendChild(row);
+            }
+        }
+    </script>
+</body>
+</html>
